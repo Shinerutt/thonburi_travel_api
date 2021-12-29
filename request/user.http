@@ -1,0 +1,35 @@
+@user_id = 508e47fc-5612-482f-92df-2dc7adc4ea0a
+
+#### Create User
+POST http://127.0.0.1:3333/register
+Content-Type: application/json
+
+{
+    "email":"abc98@hotmail.com",
+    "password":"123456",
+    "first_name":"firstname",
+    "last_name":"lastname",
+    "nick_name":"ball"
+}
+
+#### show user by user_id
+
+GET http://127.0.0.1:3333/user/{{user_id}}
+Content-Type: application/json
+
+
+#### Update User By Id
+PUT http://127.0.0.1:3333/user/{{user_id}}
+Content-Type: application/json
+
+{
+    "email":"abc7@hotmail.com",
+    "first_name":"firstname",
+    "last_name":"lastname",
+    "nick_name":"ball"
+}
+
+
+### Delete User by id
+DELETE  http://127.0.0.1:3333/user/{{user_id}}
+Content-Type: application/json

@@ -16,10 +16,11 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-    var a=0,b=5
-    return a+b
-
-    
-})
-Route.get('/user', () => 'Hello User')
+// register user
+Route.post("/register",'UsersTableController.register')
+// show user by id
+Route.get("/user/:user_id","UsersTableController.show")
+// uodate user by id
+Route.put("/user/:user_id","UsersTableController.update")
+// Delete User by user id
+Route.delete("/user/:user_id","UsersTableController.destroy")
