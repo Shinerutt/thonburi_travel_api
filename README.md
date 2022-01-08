@@ -37,3 +37,9 @@ adonis migration:run
 ```
 adonis make:model users_table -c -m
 ```
+
+
+landmark
+market
+temple
+restaurant
