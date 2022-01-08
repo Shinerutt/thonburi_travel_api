@@ -24,3 +24,7 @@ Route.get("/user/:user_id","UsersTableController.show")
 Route.put("/user/:user_id","UsersTableController.update")
 // Delete User by user id
 Route.delete("/user/:user_id","UsersTableController.destroy")
+
+Route.get("/places/:category",'PlacesController.index')
+
+Route.get("/view/places/:id",'PlacesController.show')

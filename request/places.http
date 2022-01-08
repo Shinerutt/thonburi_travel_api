@@ -1,0 +1,8 @@
+
+@category = market
+@places_id = 8254af5e-66a9-4a24-991d-121531936aff
+### get places
+GET http://127.0.0.1:3333/places/{{category}}
+
+### view places by id
+GET  http://127.0.0.1:3333/view/places/{{places_id}}
