@@ -28,3 +28,5 @@ Route.delete("/user/:user_id","UsersTableController.destroy")
 Route.get("/places/:category",'PlacesController.index')
 
 Route.get("/view/places/:id",'PlacesController.show')
+
+Route.get("/vdo",'VdoController.index')
