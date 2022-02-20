@@ -1,5 +1,7 @@
 'use strict'
 
+const { route } = require('@adonisjs/framework/src/Route/Manager')
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -30,3 +32,5 @@ Route.get("/places/:category",'PlacesController.index')
 Route.get("/view/places/:id",'PlacesController.show')
 
 Route.get("/vdo",'VdoController.index')
+
+Route.post("/login","AuthenticationController.login")
