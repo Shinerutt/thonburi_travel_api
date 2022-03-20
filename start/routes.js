@@ -34,3 +34,5 @@ Route.get("/view/places/:id",'PlacesController.show')
 Route.get("/vdo",'VdoController.index')
 
 Route.post("/login","AuthenticationController.login")
+
+Route.post("/comment/save","ReviewsController.store")

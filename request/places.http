@@ -1,6 +1,6 @@
 
 @category = all
-@places_id = 8254af5e-66a9-4a24-991d-121531936aff
+@places_id = 22bc0fd1-3619-4232-9c91-acdde16a2ce2
 ### get places
 GET http://127.0.0.1:3333/places/{{category}}
 

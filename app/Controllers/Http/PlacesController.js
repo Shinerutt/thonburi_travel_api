@@ -40,7 +40,12 @@ class PlacesController {
    */
 
   async show({ params: { id }, request, response, view }) {
-    return await Places.find(id)
+    var places_detail = await Places.find(id)
+    places_detail.review = await places_detail.review()
+    .with("user")
+    .fetch()
+     return await places_detail
+    
   }
 
 
