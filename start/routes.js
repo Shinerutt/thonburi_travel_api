@@ -36,3 +36,11 @@ Route.get("/vdo",'VdoController.index')
 Route.post("/login","AuthenticationController.login")
 
 Route.post("/comment/save","ReviewsController.store")
+
+Route.get("/recommededPlaces","RecommendedPlaceController.index")
+
+Route.get("/view/recommededPlaces/:id",'RecommendedPlaceController.show')
+
+Route.get("/recommededTrip","RecommededTripController.index")
+
+Route.get("/view/recommededTrip/:id",'RecommededTripController.show')

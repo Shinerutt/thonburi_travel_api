@@ -11,6 +11,7 @@ class RecommededTripDetailSchema extends Schema {
       table.string('img_place')
       table.double('lat')
       table.double('lng')
+      table.text('content')
       
       table.timestamps()
     })

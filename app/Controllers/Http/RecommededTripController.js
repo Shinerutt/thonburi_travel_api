@@ -3,7 +3,7 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-
+const recommededTrip = use("App/Models/RecommededTrip")
 /**
  * Resourceful controller for interacting with recommededtrips
  */
@@ -17,7 +17,11 @@ class RecommededTripController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index({ }) {
+
+    return await recommededTrip
+      .all()
+
   }
 
   /**
@@ -29,65 +33,16 @@ class RecommededTripController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
-  }
 
-  /**
-   * Create/save a new recommededtrip.
-   * POST recommededtrips
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
-  }
+   async show({ params: { id }, request, response, view }) {
+     console.log(id);
+    var recommeded_trip = await recommededTrip.find(id)
+    recommeded_trip.detail = await recommeded_trip.detail().fetch()
+      return  await recommeded_trip
+ 
+     
+   }
 
-  /**
-   * Display a single recommededtrip.
-   * GET recommededtrips/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
-
-  /**
-   * Render a form to update an existing recommededtrip.
-   * GET recommededtrips/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update recommededtrip details.
-   * PUT or PATCH recommededtrips/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a recommededtrip with id.
-   * DELETE recommededtrips/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
-  }
 }
 
 module.exports = RecommededTripController
