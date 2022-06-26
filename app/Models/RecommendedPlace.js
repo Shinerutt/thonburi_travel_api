@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class RecommendedPlace extends Model {
     detail(){
-        return this.hasOne("App/Models/RecommendedPlaceDetail","id","ref_recommended")
+        return this.hasMany("App/Models/RecommendedPlaceDetail","id","ref_recommended")
     }
 }
 
