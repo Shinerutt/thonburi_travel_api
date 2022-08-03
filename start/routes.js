@@ -33,9 +33,17 @@ Route.post("/places","PlacesController.create")
 
 Route.get("/view/places/:id",'PlacesController.show')
 
+Route.post("/update/places/:places_id", "PlacesController.update")
+
+Route.delete("/places/:places_id" ,"PlacesController.delete")
+
 Route.get("/vdo",'VdoController.index')
 
 Route.post("/vdo", "VdoController.create")
+
+Route.post("/update/vdo/:vdo_id" , "VdoController.update")
+
+Route.delete("/vdo/:vdo_id" ,"VdoController.delete")
 
 Route.post("/login","AuthenticationController.login")
 

@@ -16,5 +16,16 @@ Content-Type: application/json
     "vdo_link":"https://www.youtube.com/watch?v=pbRj27WexjE"
 }
 
+### Update Video 
+POST http://127.0.0.1:3333/update/vdo/5b2a6c42-edf3-4a3b-a4a4-b387698d5397
+Content-Type: application/json
 
+{
+   
+    "img_cover":"https://www.dochord.com/wp-content/uploads/2022/06/%E0%B8%82%E0%B8%A7%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B4%E0%B9%88%E0%B8%99.webp",
+    "name":"ขวานบิ่นV2",
+    "vdo_link":"https://www.youtube.com/watch?v=pbRj27WexjE"
+}
 
+### Delete Video
+DELETE http://127.0.0.1:3333/vdo/5b2a6c42-edf3-4a3b-a4a4-b387698d5397

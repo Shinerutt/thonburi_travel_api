@@ -20,3 +20,22 @@ Content-Type: application/json
     "img_places":[{"img":"https://youimg1.tripcdn.com/target/100v0p000000fx0m7ED8C_C_760_506.jpg"}]
 
 }
+
+### Update Places
+POST http://127.0.0.1:3333/update/places/c974994a-652c-47b1-9c08-1ebd4a2087d4
+Content-Type: application/json
+
+{
+    "name":"dark22",
+    "lat":"1234",
+    "lng":"05538",
+    "detail":"dasvhbbcvbdasdhhjl,hbmvm",
+    "category":"landmark",
+    "img_places":[{"img":"https://youimg1.tripcdn.com/target/100v0p000000fx0m7ED8C_C_760_506.jpg"}]
+
+}
+
+### Delete Video
+DELETE http://127.0.0.1:3333/places/c974994a-652c-47b1-9c08-1ebd4a2087d4
+
+

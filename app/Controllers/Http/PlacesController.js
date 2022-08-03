@@ -75,8 +75,50 @@ class PlacesController {
     } 
   }
 
+async update({ params: { places_id },request, response}) {
+  try {
+    var { name,lat,lng,detail,category,img_places } = request.only(['name', 'lat','lng','detail','category','img_places'])
+    const places = await Places.find(places_id)
+    if(places){
+       // () = if () ? {data} : else{}
+       places.name = (name != undefined ) ? name : places.name
+       places.lat = (lat != undefined ) ? lat : places.lat
+       places.lng = (lng != undefined ) ? lng : places.lng
+       places.detail = (detail != undefined ) ? detail : places.detail
+       places.category = (category != undefined ) ? category : places.category
+       places.img_places = (img_places != undefined ) ? JSON.stringify(img_places.map(x=>x.img)) : places.img_places
+       await places.save()
+       return {
+        "status":true , "data" :places
+      }
+    }else{
+      return {"status": false, "message": "Places Not Found"}
+    }
+  } catch (error) {
+    return {
+      "status":false,
+      "message" :error.message
+    }
+  }
+}
 
+async delete ({ params: { places_id },request, response}){
+  try {
+    const places = await Places.find(places_id)
 
+    if(places){
+      await places.delete()
+      return {"status" :true }
+    }else{
+      return {"status": false, "message": "Places Not Found"}
+    }
+  } catch (error) {
+    return {
+      "status":false,
+      "message" :error.message
+    }
+  }
+}
 
 }
 
