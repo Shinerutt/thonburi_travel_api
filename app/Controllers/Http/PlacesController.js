@@ -4,6 +4,8 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 const Places = use("App/Models/Places")
+const { uuid } = require('uuidv4');
+
 /**
  * Resourceful controller for interacting with placess
  */
@@ -46,6 +48,31 @@ class PlacesController {
     .fetch()
      return await places_detail
     
+  }
+  
+  async create({request, response}){
+    try {
+      var { name,lat,lng,detail,category,img_places } = request.only(['name', 'lat','lng','detail','category','img_places'])
+      var places = new Places()
+      places.id = uuid()
+      places.name = name
+      places.lat = lat
+      places.lng = lng
+      places.detail = detail
+      places.category = category
+      var img_places_array = img_places.map(x=>x.img)
+      places.img_places = JSON.stringify(img_places_array)
+      console.log(img_places_array);
+      await places.save()
+      return {
+        "status": true, "data" :places
+      }
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    } 
   }
 
 

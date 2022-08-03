@@ -6,3 +6,17 @@ GET http://127.0.0.1:3333/places/{{category}}
 
 ### view places by id
 GET  http://127.0.0.1:3333/view/places/{{places_id}}
+
+### Create Places
+POST http://127.0.0.1:3333/places
+Content-Type: application/json
+
+{
+    "name":"dark",
+    "lat":"1234",
+    "lng":"05538",
+    "detail":"dasvhbbcvbdasdhhjl,hbmvm",
+    "category":"landmark",
+    "img_places":[{"img":"https://youimg1.tripcdn.com/target/100v0p000000fx0m7ED8C_C_760_506.jpg"}]
+
+}
