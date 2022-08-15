@@ -1,0 +1,45 @@
+### Create Title
+POST http://127.0.0.1:3333/recommededTrip
+Content-Type: application/json
+
+{
+   
+    "img_cover":"https://www.dochord.com/wp-content/uploads/2022/06/%E0%B8%82%E0%B8%A7%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B4%E0%B9%88%E0%B8%99.webp",
+    "title":"ขวานบิ่น"
+    
+}
+
+### Create RecommendedTripDetail
+POST http://127.0.0.1:3333/recommededTripDetail
+Content-Type: application/json
+
+{
+   
+    "img_place":"https://www.dochord.com/wp-content/uploads/2022/06/%E0%B8%82%E0%B8%A7%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B4%E0%B9%88%E0%B8%99.webp",
+    "name":"ขวานบิ่น",
+    "ref_recommended" : "d62ac1a2-1515-482d-ac47-ede13ff1b4ae",
+    "content" : "-",
+    "lat" : "0.123",
+    "lng": "1.2654"
+    
+}
+
+### Update recommededTripDetail 
+PUT  http://127.0.0.1:3333/recommededTripDetail/f4186094-e132-4c71-b185-66ad9ec708b9
+Content-Type: application/json
+
+{
+   
+    "img_place":"https://www.dochord.com/wp-content/uploads/2022/06/%E0%B8%82%E0%B8%A7%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B4%E0%B9%88%E0%B8%99.webp",
+    "name":"ขวานบิ่น5564",
+    "ref_recommended" : "d62ac1a2-1515-482d-ac47-ede13ff1b4ae",
+    "content" : "dasdaslkdla",
+    "lat" : "0.123",
+    "lng": "1.2654"
+    
+}
+
+
+### Delete recommededTripDetail
+DELETE http://127.0.0.1:3333/recommededTripDetail/75f578da-030a-4236-b8f2-ed74b82d2613
+

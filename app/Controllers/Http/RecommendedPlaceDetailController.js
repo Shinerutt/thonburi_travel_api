@@ -3,91 +3,85 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-
+const RecommendedPlaceDetail = use("App/Models/RecommendedPlaceDetail")
+const { uuid } = require('uuidv4');
 /**
  * Resourceful controller for interacting with recommendedplacedetails
  */
 class RecommendedPlaceDetailController {
-  /**
-   * Show a list of all recommendedplacedetails.
-   * GET recommendedplacedetails
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  
+  async create ({request, response}){
+    try {
+      var {img_places,ref_recommended,content,lat,lng,name} = request.only(['img_places','ref_recommended','content','lat','lng','name'])
+      var recommendedPlaceDetail = new RecommendedPlaceDetail()
+      recommendedPlaceDetail.id = uuid()
+      recommendedPlaceDetail.img_places = img_places
+      recommendedPlaceDetail.ref_recommended = ref_recommended
+      recommendedPlaceDetail.content = content
+      recommendedPlaceDetail.lat = lat
+      recommendedPlaceDetail.lng = lng
+      recommendedPlaceDetail.name = name
+      await recommendedPlaceDetail.save()
+      return {
+        "status":true , "data" :recommendedPlaceDetail
+      }
+      
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    }
+   
   }
 
-  /**
-   * Render a form to be used for creating a new recommendedplacedetail.
-   * GET recommendedplacedetails/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async update({ params: { id },request, response}){
+    try {
+      var {img_places,ref_recommended,content,lat,lng,name} = request.only(['name','img_places','ref_recommended','content','lat','lng'])
+      const recommendedPlaceDetail = await RecommendedPlaceDetail.find(id)
+
+      if(recommendedPlaceDetail){
+        // () = if () ? {data} : else{}
+        recommendedPlaceDetail.img_places = (img_places != undefined ) ? img_places : recommendedPlaceDetail.img_places
+        recommendedPlaceDetail.ref_recommended = (ref_recommended != undefined ) ? ref_recommended : recommendedPlaceDetail.ref_recommended 
+        recommendedPlaceDetail.content = (content != undefined ) ? content : recommendedPlaceDetail.content
+        recommendedPlaceDetail.lat = (lat != undefined ) ? lat : recommendedPlaceDetail.lat
+        recommendedPlaceDetail.lng = (lng != undefined ) ? lng : recommendedPlaceDetail.lng
+        recommendedPlaceDetail.name = (name != undefined ) ? name : recommendedPlaceDetail.name
+        await recommendedPlaceDetail.save()
+        return {
+          "status":true , "data" :recommendedPlaceDetail
+        }
+      }else{
+        return {"status": false, "message": "RecommendedPlaceDetail Not Found"}
+      }
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    }
+
   }
 
-  /**
-   * Create/save a new recommendedplacedetail.
-   * POST recommendedplacedetails
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+  async delete ({ params: { id },request, response}){
+    try {
+      const recommendedPlaceDetail = await RecommendedPlaceDetail.find(id)
+
+      if(recommendedPlaceDetail){
+        await recommendedPlaceDetail.delete()
+        return {"status" :true }
+      }else{
+        return {"status": false, "message": "RecommendedPlaceDetail Not Found"}
+      }
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    }
   }
 
-  /**
-   * Display a single recommendedplacedetail.
-   * GET recommendedplacedetails/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
-
-  /**
-   * Render a form to update an existing recommendedplacedetail.
-   * GET recommendedplacedetails/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update recommendedplacedetail details.
-   * PUT or PATCH recommendedplacedetails/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a recommendedplacedetail with id.
-   * DELETE recommendedplacedetails/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
-  }
 }
 
 module.exports = RecommendedPlaceDetailController

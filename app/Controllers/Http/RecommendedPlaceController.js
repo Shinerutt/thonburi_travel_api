@@ -3,7 +3,8 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-const recommededPlaces = use("App/Models/RecommendedPlace")
+const RecommededPlaces = use("App/Models/RecommendedPlace")
+const { uuid } = require('uuidv4');
 /**
  * Resourceful controller for interacting with recommendedplaces
  */
@@ -19,7 +20,7 @@ class RecommendedPlaceController {
    */
    async index({params, request, response, view }) {
 
-    return await recommededPlaces
+    return await RecommededPlaces
       .all()
 
   }
@@ -34,12 +35,40 @@ class RecommendedPlaceController {
    * @param {View} ctx.view
    */
    async show({ params: { id }, request, response, view }) {
-   var recommeded_places = await recommededPlaces.find(id)
+   var recommeded_places = await RecommededPlaces.find(id)
    recommeded_places.detail = await recommeded_places.detail().fetch()
      return  await recommeded_places
 
     
   }
+
+  async create ({request, response}){
+    try {
+      var {img_cover,title} = request.only(['img_cover','title'])
+      var recommededPlaces = new RecommededPlaces()
+      recommededPlaces.id = uuid()
+      recommededPlaces.img_cover = img_cover
+      recommededPlaces.title = title
+      
+      await recommededPlaces.save()
+      return {
+        "status":true , "data" :recommededPlaces
+      }
+      
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    }
+   
+  }
+
+  
+
+
+
+
   
 }
 

@@ -53,6 +53,23 @@ Route.get("/recommededPlaces","RecommendedPlaceController.index")
 
 Route.get("/view/recommededPlaces/:id",'RecommendedPlaceController.show')
 
+Route.post("/recommededPlaces" , "RecommendedPlaceController.create")
+
 Route.get("/recommededTrip","RecommededTripController.index")
 
+Route.post("/recommededTrip" , "RecommededTripController.create")
+
 Route.get("/view/recommededTrip/:id",'RecommededTripController.show')
+// post = ``insearch ลง database
+Route.post("/recommededTripDetail" , "RecommededTripDetailController.create")
+
+Route.put("/recommededTripDetail/:id" , "RecommededTripDetailController.update")
+
+Route.delete("/recommededTripDetail/:id" , "RecommededTripDetailController.delete")
+
+Route.post("/recommendedPlaceDetail" ,"RecommendedPlaceDetailController.create" )
+
+Route.put("/recommendedPlaceDetail/:id", "RecommendedPlaceDetailController.update")
+
+Route.delete("/recommendedPlaceDetail/:id" ,"RecommendedPlaceDetailController.delete")
+

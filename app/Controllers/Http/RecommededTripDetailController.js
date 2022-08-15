@@ -3,91 +3,85 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-
+  const RecommededTripDetail = use("App/Models/RecommededTripDetail")
+  const { uuid } = require('uuidv4');
 /**
  * Resourceful controller for interacting with recommededtripdetails
  */
 class RecommededTripDetailController {
-  /**
-   * Show a list of all recommededtripdetails.
-   * GET recommededtripdetails
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  
+  async create ({request, response}){
+    try {
+      var {img_place,name,ref_recommended,content,lat,lng} = request.only(['img_place','ref_recommended','content','lat','lng','name'])
+      var recommededTripDetail = new RecommededTripDetail()
+      recommededTripDetail.id = uuid()
+      recommededTripDetail.img_place = img_place
+      recommededTripDetail.ref_recommended = ref_recommended
+      recommededTripDetail.content = content
+      recommededTripDetail.lat = lat
+      recommededTripDetail.lng = lng
+      recommededTripDetail.name = name
+      await recommededTripDetail.save()
+      return {
+        "status":true , "data" :recommededTripDetail
+      }
+      
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    }
+   
+  }
+  
+  async update({ params: { id },request, response}){
+    try {
+      var {img_place,ref_recommended,content,lat,lng,name} = request.only(['name','img_place','ref_recommended','content','lat','lng'])
+      const recommededTripDetail = await RecommededTripDetail.find(id)
+
+      if(recommededTripDetail){
+        // () = if () ? {data} : else{}
+        recommededTripDetail.img_place = (img_place != undefined ) ? img_place : recommededTripDetail.img_place
+        recommededTripDetail.ref_recommended = (ref_recommended != undefined ) ? ref_recommended : recommededTripDetail.ref_recommended 
+        recommededTripDetail.content = (content != undefined ) ? content : recommededTripDetail.content
+        recommededTripDetail.lat = (lat != undefined ) ? lat : recommededTripDetail.lat
+        recommededTripDetail.lng = (lng != undefined ) ? lng : recommededTripDetail.lng
+        recommededTripDetail.name = (name != undefined ) ? name : recommededTripDetail.name
+        await recommededTripDetail.save()
+        return {
+          "status":true , "data" :recommededTripDetail
+        }
+      }else{
+        return {"status": false, "message": "RecommededTripDetail Not Found"}
+      }
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    }
+
   }
 
-  /**
-   * Render a form to be used for creating a new recommededtripdetail.
-   * GET recommededtripdetails/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
-  }
+  async delete ({ params: { id },request, response}){
+    try {
+      const recommededTripDetail = await RecommededTripDetail.find(id)
 
-  /**
-   * Create/save a new recommededtripdetail.
-   * POST recommededtripdetails
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+      if(recommededTripDetail){
+        await recommededTripDetail.delete()
+        return {"status" :true }
+      }else{
+        return {"status": false, "message": "RecommededTripDetail Not Found"}
+      }
+    } catch (error) {
+      return {
+        "status":false,
+        "message" :error.message
+      }
+    }
   }
-
-  /**
-   * Display a single recommededtripdetail.
-   * GET recommededtripdetails/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
-
-  /**
-   * Render a form to update an existing recommededtripdetail.
-   * GET recommededtripdetails/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update recommededtripdetail details.
-   * PUT or PATCH recommededtripdetails/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a recommededtripdetail with id.
-   * DELETE recommededtripdetails/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
-  }
+  
 }
 
 module.exports = RecommededTripDetailController

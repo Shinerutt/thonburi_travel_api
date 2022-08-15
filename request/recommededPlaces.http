@@ -1,0 +1,44 @@
+### Create Title
+POST http://127.0.0.1:3333/recommededPlaces
+Content-Type: application/json
+
+{
+   
+    "img_cover":"https://www.dochord.com/wp-content/uploads/2022/06/%E0%B8%82%E0%B8%A7%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B4%E0%B9%88%E0%B8%99.webp",
+    "title":"ขวานบิ่น213164"
+    
+}
+
+
+### Create RecommendedPlaceDetail
+POST http://127.0.0.1:3333/recommendedPlaceDetail
+Content-Type: application/json
+
+{
+   
+    "img_place":"https://www.dochord.com/wp-content/uploads/2022/06/%E0%B8%82%E0%B8%A7%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B4%E0%B9%88%E0%B8%99.webp",
+    "name":"ขวานบิ่น554",
+    "ref_recommended" : "714f094e-c4bb-4f86-9895-2b1c17591080",
+    "content" : "-",
+    "lat" : "0.123",
+    "lng": "1.2654"
+    
+}
+
+### Update Video 
+PUT  http://127.0.0.1:3333/recommendedPlaceDetail/9b8d678d-b65a-4908-98d8-5d60bf6fa6ed
+Content-Type: application/json
+
+{
+   
+    "img_place":"https://www.dochord.com/wp-content/uploads/2022/06/%E0%B8%82%E0%B8%A7%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B4%E0%B9%88%E0%B8%99.webp",
+    "name":"ขวานบิ่น5564",
+    "ref_recommended" : "714f094e-c4bb-4f86-9895-2b1c17591080",
+    "content" : "dasdaslkdla",
+    "lat" : "0.123",
+    "lng": "1.2654"
+    
+}
+
+### Delete recommendedPlaceDetail
+DELETE http://127.0.0.1:3333/recommendedPlaceDetail/9b8d678d-b65a-4908-98d8-5d60bf6fa6ed
