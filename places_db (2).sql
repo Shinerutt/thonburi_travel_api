@@ -117,7 +117,7 @@ CREATE TABLE `recommeded_trips` (
 
 CREATE TABLE `recommeded_trip_details` (
   `id` varchar(255) NOT NULL,
-  `ref_recommened` varchar(255) DEFAULT NULL,
+  `ref_recommended` varchar(255) DEFAULT NULL,
   `img_place` varchar(255) DEFAULT NULL,
   `lat` double DEFAULT NULL,
   `lng` double DEFAULT NULL,
@@ -268,7 +268,7 @@ ALTER TABLE `recommeded_trips`
 --
 ALTER TABLE `recommeded_trip_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `recommeded_trip_details_ref_recommened_index` (`ref_recommened`);
+  ADD KEY `recommeded_trip_details_ref_recommended_index` (`ref_recommended`);
 
 --
 -- Indexes for table `recommended_places`
@@ -329,7 +329,7 @@ ALTER TABLE `favorites`
 -- Constraints for table `recommeded_trip_details`
 --
 ALTER TABLE `recommeded_trip_details`
-  ADD CONSTRAINT `recommeded_trip_details_ref_recommened_foreign` FOREIGN KEY (`ref_recommened`) REFERENCES `recommeded_trips` (`id`);
+  ADD CONSTRAINT `recommeded_trip_details_ref_recommended_foreign` FOREIGN KEY (`ref_recommended`) REFERENCES `recommeded_trips` (`id`);
 
 --
 -- Constraints for table `recommended_place_details`

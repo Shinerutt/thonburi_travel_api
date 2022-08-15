@@ -42,6 +42,7 @@ class RecommededTripDetailController {
 
       if(recommededTripDetail){
         // () = if () ? {data} : else{}
+        console.log(img_place)
         recommededTripDetail.img_place = (img_place != undefined ) ? img_place : recommededTripDetail.img_place
         recommededTripDetail.ref_recommended = (ref_recommended != undefined ) ? ref_recommended : recommededTripDetail.ref_recommended 
         recommededTripDetail.content = (content != undefined ) ? content : recommededTripDetail.content

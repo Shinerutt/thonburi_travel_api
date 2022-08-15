@@ -7,7 +7,7 @@ class RecommededTripDetailSchema extends Schema {
   up () {
     this.create('recommeded_trip_details', (table) => {
       table.string('id').primary();
-      table.string('ref_recommened').index().references('id').inTable('recommeded_trips')
+      table.string('ref_recommended').index().references('id').inTable('recommeded_trips')
       table.string('img_place')
       table.double('lat')
       table.double('lng')
