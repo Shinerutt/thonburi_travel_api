@@ -68,13 +68,14 @@ class UsersTableController {
    * @param {Response} ctx.response
    */
   async update({ params: { user_id }, request, response }) {
-    var { email, first_name, last_name, nick_name } = request.only(['email', 'first_name', 'last_name', 'nick_name'])
+    var { email, first_name, last_name, nick_name ,img_profile} = request.only(['email', 'first_name', 'last_name', 'nick_name','img_profile'])
     var user = await Users.find(user_id)
     if (user) {
       user.email = (email) ? email : user.email
       user.first_name = (first_name) ? first_name : user.first_name
       user.last_name = (last_name) ? last_name : user.last_name
       user.nick_name = (nick_name) ? nick_name : user.nick_name
+      user.img_profile = (img_profile)? img_profile : user.img_profile
 
       try {
         await user.save()
